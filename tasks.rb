@@ -38,8 +38,7 @@ def write_tasks()
 end
     
 if ARGV[0].eql?('a')
-  task_str = ARGV[1]
-  add_task(task_str)
+  add_task(ARGV[1])
 elsif ARGV[0].eql?('r') or ARGV[0].eql?('l')
   list_tasks()
 elsif ARGV[0].eql?('d')
