@@ -5,6 +5,7 @@ $tasks_file_path = './tasks_list'
 $tasks_file = File.open($tasks_file_path,'a+')
 
 def list_tasks()
+  read_tasks()
   $tasks.each_with_index do |task,index|
     puts("#{index}: #{task}")
   end
@@ -17,11 +18,15 @@ def read_tasks()
 end
 
 def add_task(task_str)
+  read_tasks()
   $tasks << task_str
+  write_tasks()
 end
 
 def delete_task(index)
+  read_tasks()
   $tasks.delete_at(index)
+  write_tasks()
 end
 
 def write_tasks()
@@ -33,17 +38,12 @@ def write_tasks()
 end
     
 if ARGV[0].eql?('a')
-  read_tasks()
   task_str = ARGV[1]
   add_task(task_str)
-  write_tasks()
 elsif ARGV[0].eql?('r') or ARGV[0].eql?('l')
-  read_tasks()
   list_tasks()
 elsif ARGV[0].eql?('d')
-  read_tasks()
   delete_task(ARGV[1].to_i())
-  write_tasks()
 end
 
 
